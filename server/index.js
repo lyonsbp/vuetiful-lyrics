@@ -25,12 +25,14 @@ app.get('/lyrics', async (req, res) => {
 app.get('/lyrics/:artist/:songName', async (req, res) => {
   const artist = req.params.artist
   const songName = req.params.songName
+  let response = null
 
   try {
-    let response = await api.search(songName, artist)
+    response = await api.search(songName, artist)
     res.send(response.data)
   } catch (e) {
     console.log(e)
+    res.send(e)
   }
 })
 
