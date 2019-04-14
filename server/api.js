@@ -14,6 +14,10 @@ class GeniusApi {
     }
     return axios.get(url, data)
   }
+
+  getHTMLPage (url) {
+    return axios.get(url)
+  }
 }
 
 module.exports = GeniusApi

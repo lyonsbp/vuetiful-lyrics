@@ -11,6 +11,7 @@
     "axios": "^0.18.0",
     "core-js": "^2.6.5",
     "express": "^4.16.4",
+    "jssoup": "0.0.10",
     "vue": "^2.6.10"
   },
   "devDependencies": {
