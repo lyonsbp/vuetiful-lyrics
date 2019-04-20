@@ -36,7 +36,6 @@ app.get('/lyrics/:artist/:songName', async (req, res) => {
     res.send(e)
   }
   let url = response.hits[0].result.url
-  // res.send(url)
 
   try {
     let html = await api.getHTMLPage(url)
