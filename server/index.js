@@ -26,23 +26,27 @@ app.get('/lyrics', async (req, res) => {
 app.get('/lyrics/:artist/:songName', async (req, res) => {
   const artist = req.params.artist
   const songName = req.params.songName
-  let response = null
+  let searchResults = null
 
   try {
-    response = await api.search(songName, artist)
-    response = response.data.response
+    searchResults = await api.search(songName, artist)
+    searchResults = searchResults.data.response
   } catch (e) {
     console.log(e)
     res.send(e)
   }
-  let url = response.hits[0].result.url
+  let url = searchResults.hits[0].result.url
 
   try {
     let html = await api.getHTMLPage(url)
     let soup = new JssSoup(html.data)
-    // console.log(soup.prettify())
-    let lyrics = soup.find('div', 'lyrics')
-    res.send(lyrics.getText('\n'))
+    let lyrics = soup.find('div', 'lyrics').getText('\n')
+
+    let response = {
+      lyrics,
+      hit: searchResults.hits[0].result
+    }
+    res.send(response)
   } catch (e) {
     console.log(e)
     res.send(e)
