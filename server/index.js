@@ -1,7 +1,7 @@
 const express = require('express')
 const JssSoup = require('jssoup').default
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 const GeniusApi = require('./api')
 
 const accessToken = 'sAbM6u-gGTeypAu7w-DPyuxz9952Ai40FOP1lYgQkhkZnydmlofDvCEpSA5eDc7i'
