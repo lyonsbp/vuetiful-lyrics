@@ -43,7 +43,7 @@ app.get('/lyrics/:artist/:songName', async (req, res) => {
   try {
     let html = await api.getHTMLPage(url)
     let soup = new JssSoup(html.data)
-    let lyrics = soup.find('div', 'lyrics').getText('\n')
+    let lyrics = soup.find('div', 'lyrics').getText('<br/>')
 
     let response = {
       lyrics,
