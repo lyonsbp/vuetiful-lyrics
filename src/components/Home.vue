@@ -27,6 +27,7 @@
           :lyrics="result.lyrics"
           :artist="result.artist"
           :songName="result.songName"
+          :loading="loading"
         />
       </v-flex>
     </v-layout>
@@ -45,6 +46,7 @@ export default {
       apiUrl: 'https://vuetiful-lyrics-backend.herokuapp.com',
       searchArtist: '',
       searchSongName: '',
+      loading: false,
       result: {
         lyrics: '',
         artist: '',
@@ -54,11 +56,20 @@ export default {
   },
   methods: {
     async getLyrics () {
+      this.loading = true
       const artist = this.searchArtist
       const songName = this.searchSongName
-      let response = await axios.get(`${this.apiUrl}/lyrics/${artist}/${songName}`)
-      this.lyrics = response.lyrics
-      console.log(response)
+
+      try {
+        let response = await axios.get(`${this.apiUrl}/lyrics/${artist}/${songName}`)
+        this.result.lyrics = response.data.lyrics
+        const hit = response.data.hit
+        this.result.songName = hit.title
+        this.result.artist = hit.primary_artist.name
+      } catch (e) {
+        console.log(e)
+      }
+      this.loading = false
     }
   }
 }
