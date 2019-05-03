@@ -1,8 +1,11 @@
 const express = require('express')
+const cors = require('cors')
 const JssSoup = require('jssoup').default
 const app = express()
 const port = process.env.PORT || 3000
 const GeniusApi = require('./api')
+
+app.use(cors())
 
 const accessToken = 'sAbM6u-gGTeypAu7w-DPyuxz9952Ai40FOP1lYgQkhkZnydmlofDvCEpSA5eDc7i'
 const api = new GeniusApi(accessToken)
