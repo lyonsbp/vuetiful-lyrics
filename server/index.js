@@ -1,11 +1,13 @@
 const express = require('express')
 const cors = require('cors')
+const bodyParser = require('body-parser')
 const JssSoup = require('jssoup').default
 const app = express()
 const port = process.env.PORT || 3000
 const GeniusApi = require('./api')
 
 app.use(cors())
+app.use(bodyParser.json())
 
 const accessToken = 'sAbM6u-gGTeypAu7w-DPyuxz9952Ai40FOP1lYgQkhkZnydmlofDvCEpSA5eDc7i'
 const api = new GeniusApi(accessToken)
@@ -14,8 +16,23 @@ app.get('/', (req, res) => {
   res.send('Yooo')
 })
 
-app.get('/lyrics/:url', async (req, res) => {
+app.post('/lyrics', async (req, res) => {
+  console.log(req.body)
+  const url = req.body.url
 
+  try {
+    let html = await api.getHTMLPage(url)
+    let soup = new JssSoup(html.data)
+    let lyrics = soup.find('div', 'lyrics').getText('<br/>')
+
+    let response = {
+      lyrics
+    }
+    res.send(response)
+  } catch (e) {
+    console.log(e)
+    res.send(e)
+  }
 })
 
 app.get('/search/lucky/:query', async (req, res) => {

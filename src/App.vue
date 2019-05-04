@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app>
+    <v-toolbar app color="primary" dark>
       <v-toolbar-title class="headline text-uppercase">
         <span>Vuetiful Lyrics</span>
       </v-toolbar-title>
