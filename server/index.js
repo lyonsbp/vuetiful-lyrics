@@ -3,7 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const JssSoup = require('jssoup').default
 const app = express()
-const cache = require('express-redis-cache')()
+// const cache = require('express-redis-cache')()
 const port = process.env.PORT || 3000
 const GeniusApi = require('./api')
 
@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
   res.send('Yooo')
 })
 
-app.post('/lyrics', cache.route(), async (req, res) => {
+app.post('/lyrics', async (req, res) => {
   const url = req.body.url
 
   try {
@@ -35,7 +35,7 @@ app.post('/lyrics', cache.route(), async (req, res) => {
   }
 })
 
-app.get('/search/lucky/:query', cache.route(), async (req, res) => {
+app.get('/search/lucky/:query', async (req, res) => {
   const query = req.params.query
   let searchResults = null
 
