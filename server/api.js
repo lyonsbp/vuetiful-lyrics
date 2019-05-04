@@ -6,10 +6,10 @@ class GeniusApi {
     this.accessToken = accessToken
   }
 
-  search (songName, artist) {
+  search (query) {
     const url = `${baseURL}/search`
     const data = {
-      params: { 'q': `${songName} ${artist}` },
+      params: { 'q': query },
       headers: { Authorization: `Bearer ${this.accessToken}` }
     }
     return axios.get(url, data)

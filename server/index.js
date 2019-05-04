@@ -14,25 +14,16 @@ app.get('/', (req, res) => {
   res.send('Yooo')
 })
 
-app.get('/lyrics', async (req, res) => {
-  const artist = 'Taylor Swift'
-  const songName = 'Trouble'
+app.get('/lyrics/:url', async (req, res) => {
 
-  try {
-    let response = await api.search(songName, artist)
-    res.send(response.data)
-  } catch (e) {
-    console.log(e)
-  }
 })
 
-app.get('/lyrics/:artist/:songName', async (req, res) => {
-  const artist = req.params.artist
-  const songName = req.params.songName
+app.get('/search/lucky/:query', async (req, res) => {
+  const query = req.params.query
   let searchResults = null
 
   try {
-    searchResults = await api.search(songName, artist)
+    searchResults = await api.search(query)
     searchResults = searchResults.data.response
   } catch (e) {
     console.log(e)
@@ -54,6 +45,20 @@ app.get('/lyrics/:artist/:songName', async (req, res) => {
     console.log(e)
     res.send(e)
   }
+})
+
+app.get('/search/:query', async (req, res) => {
+  const query = req.params.query
+  let searchResults = null
+
+  try {
+    searchResults = await api.search(query)
+    searchResults = searchResults.data.response
+  } catch (e) {
+    console.log(e)
+    res.send(e)
+  }
+  res.send(searchResults.hits)
 })
 
 app.listen(port, () => console.log(`App listening on port: ${port}`))

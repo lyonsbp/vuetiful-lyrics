@@ -3,22 +3,16 @@
     <v-layout wrap>
       <v-flex xs12 md6>
         <v-text-field
-          label="Artist"
-          v-model="searchArtist"
-        >
-        </v-text-field>
-      </v-flex>
-      <v-flex xs12 md6>
-        <v-text-field
-          label="Song"
-          v-model="searchSongName"
+          label="Search for a song"
+          hint="ex. taylor swift trouble"
+          v-model="searchInput"
         >
         </v-text-field>
       </v-flex>
       <v-flex xs12>
         <v-btn
           color="primary"
-          @click="getLyrics"
+          @click="getLyricsLucky"
         >Search
         </v-btn>
       </v-flex>
@@ -43,9 +37,8 @@ export default {
   },
   data () {
     return {
-      apiUrl: 'https://vuetiful-lyrics-backend.herokuapp.com',
-      searchArtist: '',
-      searchSongName: '',
+      apiUrl: 'https://vuetiful-lyrics.netlify.com',
+      searchInput: '',
       loading: false,
       result: {
         lyrics: '',
@@ -55,13 +48,27 @@ export default {
     }
   },
   methods: {
-    async getLyrics () {
+    async getLyricsLucky () {
       this.loading = true
-      const artist = this.searchArtist
-      const songName = this.searchSongName
+      const query = this.searchInput
 
       try {
-        let response = await axios.get(`${this.apiUrl}/lyrics/${artist}/${songName}`)
+        let response = await axios.get(`${this.apiUrl}/search/lucky/${query}`)
+        this.result.lyrics = response.data.lyrics
+        const hit = response.data.hit
+        this.result.songName = hit.title
+        this.result.artist = hit.primary_artist.name
+      } catch (e) {
+        console.log(e)
+      }
+      this.loading = false
+    },
+    async search () {
+      this.loading = true
+      const query = this.searchInput
+
+      try {
+        let response = await axios.get(`${this.apiUrl}/search/${query}`)
         this.result.lyrics = response.data.lyrics
         const hit = response.data.hit
         this.result.songName = hit.title
