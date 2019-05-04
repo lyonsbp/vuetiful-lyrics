@@ -37,7 +37,7 @@ export default {
   },
   data () {
     return {
-      apiUrl: 'https://vuetiful-lyrics.netlify.com',
+      apiUrl: 'https://vuetiful-lyrics-backend.herokuapp.com',
       searchInput: '',
       loading: false,
       result: {
