@@ -5,6 +5,7 @@
         <v-text-field
           label="Search for a song"
           hint="ex. taylor swift trouble"
+          prepend-icon="search"
           v-model="searchInput"
         >
         </v-text-field>
