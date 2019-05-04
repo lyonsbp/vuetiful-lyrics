@@ -2,8 +2,8 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const JssSoup = require('jssoup').default
-const cache = require('express-redis-cache')()
 const app = express()
+const cache = require('express-redis-cache')()
 const port = process.env.PORT || 3000
 const GeniusApi = require('./api')
 
