@@ -17,8 +17,7 @@ app.get('/', (req, res) => {
   res.send('Yooo')
 })
 
-app.post('/lyrics', async (req, res) => {
-  cache.route()
+app.post('/lyrics', cache.route(), async (req, res) => {
   const url = req.body.url
 
   try {
@@ -36,8 +35,7 @@ app.post('/lyrics', async (req, res) => {
   }
 })
 
-app.get('/search/lucky/:query', async (req, res) => {
-  cache.route()
+app.get('/search/lucky/:query', cache.route(), async (req, res) => {
   const query = req.params.query
   let searchResults = null
 
