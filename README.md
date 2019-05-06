@@ -1,5 +1,8 @@
 # vuetiful-lyrics
 
+## Project Resources
+[Google Doc](https://docs.google.com/document/d/1sYBH8g8BCWdHPaq3YOI_2Y1v-AIpxk2hyEHcLT0VVSE/edit?usp=sharing) with links to Codesandbox and Google Slides.
+
 ## Project setup
 ```
 npm install
