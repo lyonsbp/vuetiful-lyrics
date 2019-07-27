@@ -7,6 +7,7 @@
           hint="ex. taylor swift trouble"
           prepend-icon="search"
           v-model="searchInput"
+          @keyup.enter="search"
         >
         </v-text-field>
       </v-flex>
