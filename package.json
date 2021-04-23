@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.18.1",
-    "core-js": "^2.6.5",
+    "core-js": "^3.11.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "jssoup": "0.0.10",
