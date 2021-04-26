@@ -15,7 +15,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "jssoup": "0.0.10",
-    "netlify-lambda": "^1.4.5",
+    "netlify-lambda": "^2.0.5",
     "vue": "^2.6.10",
     "vuetify": "^1.5.5"
   },
